@@ -3,75 +3,71 @@
 DrpUploadTask.lua
 Upload images to Dark Rush Photography
 
-------------------------------------------------------------------------------]]	
-
+------------------------------------------------------------------------------]]
 local LrPathUtils = import 'LrPathUtils'
 local LrFileUtils = import 'LrFileUtils'
 local LrDialogs = import 'LrDialogs'
 
-require "DrpAPI"
+require 'DrpAPI'
 
 DrpUploadTask = {}
 
-function DrpUploadTask.processRenderedPhotos( functionContext, exportContext )
-	
-	local exportSession = exportContext.exportSession
+function DrpUploadTask.processRenderedPhotos(functionContext, exportContext)
 
-	local exportSettings = assert( exportContext.propertyTable )
-	
-	local numberOfImages = exportSession:countRenditions()
-	local progressScope = exportContext:configureProgress {
-						title = numberOfImages > 1
-									and LOC( "$$$/DarkRushPhotography/Publish/Progress=Publishing ^1 images to Dark Rush Photography", numberOfImages )
-									or LOC "$$$/DarkRushPhotography/Publish/Progress/One=Publishing one image to Dark Rush Photography",
-					}
+    local exportSession = exportContext.exportSession
 
-	local failures = {}
+    local exportSettings = assert(exportContext.propertyTable)
 
-	for _, rendition in exportContext:renditions{ stopIfCanceled = true } do
-	
-		-- Wait for next photo to render.
+    local numberOfImages = exportSession:countRenditions()
+    local progressScope = exportContext:configureProgress{
+        title = numberOfImages > 1 and
+            LOC('$$$/DarkRushPhotography/Upload/Progress=Publishing ^1 images to Dark Rush Photography.', numberOfImages) or
+            LOC '$$$/DarkRushPhotography/Upload/Progress/One=Publishing one image to Dark Rush Photography.'
+    }
 
-		local success, pathOrMessage = rendition:waitForRender()
-		
-		-- Check for cancellation again after photo has been rendered.
-		
-		if progressScope:isCanceled() then break end
-		
-		if success then
+    local publishedCollection = exportContext.publishedCollection
+    local publishService = publishedCollection:getService()
 
-			local filename = LrPathUtils.leafName( pathOrMessage )			
+    for i, rendition in exportContext:renditions{
+        stopIfCanceled = true
+    } do
 
-			local uploadSuccess = DrpAPI.uploadPhoto( exportSettings, {
-				filePath = pathOrMessage,
-			} )
-			
-			if not uploadSuccess then
-			
-				-- If we can't upload that file, log it.  For example, maybe user has exceeded disk
-				-- quota, or the file already exists and we don't have permission to overwrite, or
-				-- we don't have permission to write to that directory, etc....
-				
-				table.insert( failures, filename )
-			end
-					
-			-- When done with photo, delete temp file. There is a cleanup step that happens later,
-			-- but this will help manage space in the event of a large upload.
-			
-			--LrFileUtils.delete( pathOrMessage )
-					
-		end
-		
-	end
+        progressScope:setPortionComplete((i - 1) / numberOfImages)
 
-	if #failures > 0 then
-		local message
-		if #failures == 1 then
-			message = LOC "$$$/FtpUpload/Upload/Errors/OneFileFailed=1 file failed to upload correctly."
-		else
-			message = LOC ( "$$$/FtpUpload/Upload/Errors/SomeFileFailed=^1 files failed to upload correctly.", #failures )
-		end
-		LrDialogs.message( message, table.concat( failures, "\n" ) )
-	end
+        local image = rendition.photo
+
+        if rendition.wasSkipped then
+
+            -- To get the skipped photo out of the to-republish bin.
+            rendition:recordPublishedPhotoId(rendition.publishedPhotoId)
+
+        else
+
+            local success, pathOrMessage = rendition:waitForRender()
+
+            if progressScope:isCanceled() then
+                break
+            end
+
+            if success then
+
+                local filename = LrPathUtils.leafName(pathOrMessage)
+
+                local publishServiceName = publishService:getName()
+                local publishedCollectionName = publishedCollection:getName()  
+                local imageUrl = DrpAPI.uploadImage(exportSettings, {
+                    filePath = pathOrMessage,
+                    publishServiceName = publishServiceName,
+                    publishedCollectionName = publishedCollectionName
+                })
+                rendition:recordPublishedPhotoId(imageUrl)
+
+                -- When done with image, delete temp file. There is a cleanup step that happens later,
+                -- but this will help manage space in the event of a large upload.
+                LrFileUtils.delete(pathOrMessage)
+
+            end
+        end
+    end
 
 end

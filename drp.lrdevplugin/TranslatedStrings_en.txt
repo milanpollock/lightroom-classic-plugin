@@ -1,0 +1,13 @@
+"$$$/DarkRushPhotography/Error/NetworkFailure=Could not connect to Dark Rush Photography^R API. Please check your Internet connection."
+"$$$/DarkRushPhotography/ExportDialog/Title=Dark Rush^R Photography API"
+"$$$/DarkRushPhotography/ExportDialog/Synopsis=API Settings"
+"$$$/DarkRushPhotography/ExportDialog/ApiBaseUrlCaption=API Base Url:"
+"$$$/DarkRushPhotography/ExportDialog/ApiFunctionKeyCaption=API Function Key:"
+"$$$/DarkRushPhotography/ExportDialog/ButtonTitle=Verify"
+"$$$/DarkRushPhotography/ExportDialog/ApiSettingsValid=API Settings Valid"
+"$$$/DarkRushPhotography/ExportDialog/ApiSettingsNotValid=API Settings Not Valid"
+"$$$/DarkRushPhotography/Upload/Progress=Uploading ^1 images to Dark Rush^R Photography."
+"$$$/DarkRushPhotography/Upload/Progress/One=Uploading one image to Dark Rush^R Photography."
+"$$$/DarkRushPhotography/Upload/Errors=^1 images failed to upload correctly."
+"$$$/DarkRushPhotography/Upload/Errors/One=One image failed to upload correctly."
+
