@@ -18,6 +18,6 @@ return {
 		file = 'DrpExportServiceProvider.lua',
 	},
 	
-	VERSION = { major=1, minor=25, revision=0 },
+	VERSION = { major=1, minor=29, revision=0 },
 	
 }

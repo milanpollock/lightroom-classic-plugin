@@ -9,6 +9,8 @@ local LrPathUtils = import 'LrPathUtils'
 local LrFileUtils = import 'LrFileUtils'
 local LrDialogs = import 'LrDialogs'
 
+require "DrpAPI"
+
 DrpUploadTask = {}
 
 function DrpUploadTask.processRenderedPhotos( functionContext, exportContext )
@@ -38,11 +40,13 @@ function DrpUploadTask.processRenderedPhotos( functionContext, exportContext )
 		
 		if success then
 
-			local filename = LrPathUtils.leafName( pathOrMessage )
+			local filename = LrPathUtils.leafName( pathOrMessage )			
+
+			local uploadSuccess = DrpAPI.uploadPhoto( exportSettings, {
+				filePath = pathOrMessage,
+			} )
 			
-			--local success = ftpInstance:putFile( pathOrMessage, filename )
-			
-			if not success then
+			if not uploadSuccess then
 			
 				-- If we can't upload that file, log it.  For example, maybe user has exceeded disk
 				-- quota, or the file already exists and we don't have permission to overwrite, or
@@ -70,6 +74,4 @@ function DrpUploadTask.processRenderedPhotos( functionContext, exportContext )
 		LrDialogs.message( message, table.concat( failures, "\n" ) )
 	end
 
-	progressScope:done()
-	
 end

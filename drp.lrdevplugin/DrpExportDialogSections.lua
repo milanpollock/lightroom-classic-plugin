@@ -20,30 +20,47 @@ function DrpExportDialogSections.sectionsForTopOfDialog( viewFactory, propertyTa
 	return {
 		{
 			title = LOC "$$$/DarkRushPhotography/ExportDialog/Title=Dark Rush Photography API",
-			synopsis = LOC "$$$/DarkRushPhotography/ExportDialog/ApiFunctionKey=API Function Key",
-			viewFactory:row {
+			synopsis = LOC "$$$/DarkRushPhotography/ExportDialog/Synopsis=API Settings",
+			viewFactory:column {
+
 				spacing = viewFactory:control_spacing(),
+				fill_horizontal = 1,
+				
+				viewFactory:row { 
+					viewFactory:static_text {
+						title = LOC "$$$/DarkRushPhotography/ExportDialog/ApiDomainCaption=API Domain:",
+						alignment = 'right',
+						width = share 'labelWidth'
+					},
 
-				viewFactory:static_text {
-					title = LOC "$$$/DarkRushPhotography/ExportDialog/ApiFunctionKeyCaption=API Function Key:",
-					alignment = 'right',
-					width = share 'labelWidth'
+					viewFactory:edit_field {
+						value = bind 'drpApiDomain',
+						immediate = true,
+						fill_horizontal = 1,
+					},
 				},
+				viewFactory:row { 
+					viewFactory:static_text {
+						title = LOC "$$$/DarkRushPhotography/ExportDialog/ApiFunctionKeyCaption=API Function Key:",
+						alignment = 'right',
+						width = share 'labelWidth'
+					},
 
-				viewFactory:password_field {
-					value = bind 'drpApiFunctionKey',
-					immediate = true,
-					fill_horizontal = 1,
-				},
+					viewFactory:password_field {
+						value = bind 'drpApiFunctionKey',
+						immediate = true,
+						fill_horizontal = 1,
+					},
 
-				viewFactory:push_button {
-					title = LOC "$$$/DarkRushPhotography/ExportDialog/ButtonTitle=Verify",
-					width = 150,
-					enabled = keyIsNot('drpApiFunctionKey', ''),
-					action = function()
-						LrDialogs.message(propertyTable.drpApiFunctionKey) -- TODO: Call the rest service!!!
-					end,
-				},
+					viewFactory:push_button {
+						title = LOC "$$$/DarkRushPhotography/ExportDialog/ButtonTitle=Verify",
+						width = 150,
+						enabled = keyIsNot('drpApiDomain', '') and keyIsNot('drpApiFunctionKey', ''),
+						action = function()
+							LrDialogs.message(propertyTable.drpApiFunctionKey) -- TODO: Call the rest service!!!
+						end,
+					},
+				}
 			},
 		},
 	}

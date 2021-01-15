@@ -22,11 +22,13 @@ end
 return {
 	small_icon = 'small_drp.png',
 	supportsIncrementalPublish = 'only',
-	hideSections = { 'exportLocation' },
+	hideSections = { 'exportLocation', 'video' },
 	allowFileFormats = nil,
 	allowColorSpaces = nil,
+	canExportVideo = false, 
 	exportPresetFields = {
-		{ key = 'drpApiFunctionKey', default = '' }
+		{ key = 'drpApiDomain', default = 'http://localhost:7071/api/' },
+		{ key = 'drpApiFunctionKey', default = '' },
 	},
 	getCollectionBehaviorInfo = getCollectionBehaviorInfo,
 	sectionsForTopOfDialog = DrpExportDialogSections.sectionsForTopOfDialog,
