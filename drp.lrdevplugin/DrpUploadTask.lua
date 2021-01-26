@@ -26,6 +26,7 @@ function DrpUploadTask.processRenderedPhotos(functionContext, exportContext)
     }
 
     local publishedCollection = exportContext.publishedCollection
+    local publishedCollectionParent = publishedCollection:getParent()
     local publishService = publishedCollection:getService()
 
     for i, rendition in exportContext:renditions{
@@ -55,10 +56,15 @@ function DrpUploadTask.processRenderedPhotos(functionContext, exportContext)
 
                 local publishServiceName = publishService:getName()
                 local publishedCollectionName = publishedCollection:getName()  
+                local publishedCollectionParentName = nil
+                if publishedCollectionParent ~= nil then
+                    publishedCollectionParentName = publishedCollectionParent:getName()
+                end
                 local imageUrl = DrpAPI.uploadImage(exportSettings, {
                     filePath = pathOrMessage,
                     publishServiceName = publishServiceName,
-                    publishedCollectionName = publishedCollectionName
+                    publishedCollectionName = publishedCollectionName,   
+                    publishedCollectionParentName = publishedCollectionParentName
                 })
                 rendition:recordPublishedPhotoId(imageUrl)
 
