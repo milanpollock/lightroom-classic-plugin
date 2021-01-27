@@ -19,7 +19,7 @@ end
 
 local function startDialog(propertyTable)
     propertyTable.LR_renamingTokensOn = true
-    propertyTable.LR_tokens = "{{image_originalName}}"
+    propertyTable.LR_tokens = "{{naming_operationSequence_5Digits}}"
     propertyTable.LR_jpeg_quality = 1
 end
 
@@ -64,6 +64,7 @@ return {
     }},
     getCollectionBehaviorInfo = getCollectionBehaviorInfo,
     startDialog = startDialog,
+    supportsCustomSortOrder = false,
     deletePhotosFromPublishedCollection = deletePhotosFromPublishedCollection,
     metadataThatTriggersRepublish = metadataThatTriggersRepublish,
     sectionsForTopOfDialog = DrpExportDialogSections.sectionsForTopOfDialog,

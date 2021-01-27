@@ -38,17 +38,17 @@ function DrpAPI.uploadImage(propertyTable, params)
     params.filePath = nil
 
     local publishServiceName = params.publishServiceName
-    local publishedCollectionParentParentName = params.publishedCollectionParentParentName
-    local publishedCollectionParentName = params.publishedCollectionParentName
+    local publishedCollectionSetParentName = params.publishedCollectionSetParentName
+    local publishedCollectionSetName = params.publishedCollectionSetName
     local publishedCollectionName = params.publishedCollectionName
 
     local leafName = LrPathUtils.leafName(filePath)
     local fileName = nil
-    if publishedCollectionParentParentName ~= nil then
-        fileName = publishServiceName .. "|&|" .. publishedCollectionParentParentName .. "|&|" ..
-                       publishedCollectionParentName .. "|&|" .. publishedCollectionName .. "|&|" .. leafName
-    elseif publishedCollectionParentName ~= nil then
-        fileName = publishServiceName .. "|&|" .. publishedCollectionParentName .. "|&|" .. publishedCollectionName ..
+    if publishedCollectionSetParentName ~= nil then
+        fileName = publishServiceName .. "|&|" .. publishedCollectionSetParentName .. "|&|" ..
+                       publishedCollectionSetName .. "|&|" .. publishedCollectionName .. "|&|" .. leafName
+    elseif publishedCollectionSetName ~= nil then
+        fileName = publishServiceName .. "|&|" .. publishedCollectionSetName .. "|&|" .. publishedCollectionName ..
                        "|&|" .. leafName
     else
         fileName = publishServiceName .. "|&|" .. publishedCollectionName .. "|&|" .. leafName

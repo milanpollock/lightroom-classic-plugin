@@ -26,10 +26,10 @@ function DrpUploadTask.processRenderedPhotos(functionContext, exportContext)
     }
 
     local publishedCollection = exportContext.publishedCollection
-    local publishedCollectionParent = publishedCollection:getParent()
-    local publishedCollectionParentParent = nil
-    if publishedCollectionParent ~= nil then
-        publishedCollectionParentParent = publishedCollectionParent:getParent()
+    local publishedCollectionSet = publishedCollection:getParent()
+    local publishedCollectionSetParent = nil
+    if publishedCollectionSet ~= nil then
+        publishedCollectionSetParent = publishedCollectionSet:getParent()
     end
     local publishService = publishedCollection:getService()
 
@@ -57,21 +57,21 @@ function DrpUploadTask.processRenderedPhotos(functionContext, exportContext)
             if success then
                 
                 local publishServiceName = publishService:getName()
-                local publishedCollectionParentParentName = nil
-                if publishedCollectionParentParent ~= nil then
-                    publishedCollectionParentParentName = publishedCollectionParentParent:getName()
+                local publishedCollectionSetParentName = nil
+                if publishedCollectionSetParent ~= nil then
+                    publishedCollectionSetParentName = publishedCollectionSetParent:getName()
                 end   
-                local publishedCollectionParentName = nil
-                if publishedCollectionParent ~= nil then
-                    publishedCollectionParentName = publishedCollectionParent:getName()
+                local publishedCollectionSetName = nil
+                if publishedCollectionSet ~= nil then
+                    publishedCollectionSetName = publishedCollectionSet:getName()
                 end
                 local publishedCollectionName = publishedCollection:getName()  
 
                 local imageUrl = DrpAPI.uploadImage(exportSettings, {
                     filePath = pathOrMessage,
                     publishServiceName = publishServiceName,
-                    publichedCollectionParentParentName = publishedCollectionParentParentName,
-                    publishedCollectionParentName = publishedCollectionParentName,
+                    publishedCollectionSetParentName = publishedCollectionSetParentName,
+                    publishedCollectionSetName = publishedCollectionSetName,
                     publishedCollectionName = publishedCollectionName
                 })
                 rendition:recordPublishedPhotoId(imageUrl)
