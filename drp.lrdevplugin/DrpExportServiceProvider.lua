@@ -12,7 +12,7 @@ local function getCollectionBehaviorInfo(publishSettings)
     return {
         defaultCollectionCanBeDeleted = true,
         canAddCollection = true,
-        maxCollectionSetDepth = 1
+        maxCollectionSetDepth = 2
     }
 
 end

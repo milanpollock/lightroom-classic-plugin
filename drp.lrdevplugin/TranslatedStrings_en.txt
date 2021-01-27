@@ -1,6 +1,6 @@
 "$$$/DarkRushPhotography/Error/NetworkFailure=Could not connect to Dark Rush Photography^R API. Please check your Internet connection."
 "$$$/DarkRushPhotography/ExportDialog/Title=Dark Rush^R Photography API"
-"$$$/DarkRushPhotography/ExportDialog/Synopsis=API Settings"
+"$$$/DarkRushPhotography/ExportDialog/Synopsis=settings mf"
 "$$$/DarkRushPhotography/ExportDialog/ApiBaseUrlCaption=API Base Url:"
 "$$$/DarkRushPhotography/ExportDialog/ApiFunctionKeyCaption=API Function Key:"
 "$$$/DarkRushPhotography/ExportDialog/ButtonTitle=Verify"

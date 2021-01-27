@@ -27,6 +27,10 @@ function DrpUploadTask.processRenderedPhotos(functionContext, exportContext)
 
     local publishedCollection = exportContext.publishedCollection
     local publishedCollectionParent = publishedCollection:getParent()
+    local publishedCollectionParentParent = nil
+    if publishedCollectionParent ~= nil then
+        publishedCollectionParentParent = publishedCollectionParent:getParent()
+    end
     local publishService = publishedCollection:getService()
 
     for i, rendition in exportContext:renditions{
@@ -51,20 +55,24 @@ function DrpUploadTask.processRenderedPhotos(functionContext, exportContext)
             end
 
             if success then
-
-                local filename = LrPathUtils.leafName(pathOrMessage)
-
+                
                 local publishServiceName = publishService:getName()
-                local publishedCollectionName = publishedCollection:getName()  
+                local publishedCollectionParentParentName = nil
+                if publishedCollectionParentParent ~= nil then
+                    publishedCollectionParentParentName = publishedCollectionParentParent:getName()
+                end   
                 local publishedCollectionParentName = nil
                 if publishedCollectionParent ~= nil then
                     publishedCollectionParentName = publishedCollectionParent:getName()
                 end
+                local publishedCollectionName = publishedCollection:getName()  
+
                 local imageUrl = DrpAPI.uploadImage(exportSettings, {
                     filePath = pathOrMessage,
                     publishServiceName = publishServiceName,
-                    publishedCollectionName = publishedCollectionName,   
-                    publishedCollectionParentName = publishedCollectionParentName
+                    publichedCollectionParentParentName = publishedCollectionParentParentName,
+                    publishedCollectionParentName = publishedCollectionParentName,
+                    publishedCollectionName = publishedCollectionName
                 })
                 rendition:recordPublishedPhotoId(imageUrl)
 

@@ -20,7 +20,7 @@ function DrpExportDialogSections.sectionsForTopOfDialog(viewFactory, propertyTab
 
     return {{
         title = LOC '$$$/DarkRushPhotography/ExportDialog/Title=Dark Rush^R Photography API',
-        synopsis = LOC '$$$/DarkRushPhotography/ExportDialog/Synopsis=API Settings',
+        synopsis = LOC '$$$/DarkRushPhotography/ExportDialog/Synopsis=settings mf',
         viewFactory:column{
 
             spacing = viewFactory:control_spacing(),
