@@ -19,7 +19,7 @@ end
 
 local function startDialog(propertyTable)
     propertyTable.LR_renamingTokensOn = true
-    propertyTable.LR_tokens = "{{naming_operationSequence_5Digits}}"
+    propertyTable.LR_tokens = "{{naming_operationSequence_4Digits}}"
     propertyTable.LR_jpeg_quality = 1
 end
 
