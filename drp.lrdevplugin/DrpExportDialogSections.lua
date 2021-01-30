@@ -1,12 +1,12 @@
 --[[----------------------------------------------------------------------------
 
 DrpExportDialogSections.lua
-Export dialog sections for Dark Rush Photography
+Export dialog sections for Dark Rush Photography's plugin
 
 ------------------------------------------------------------------------------]]
 local LrView = import 'LrView'
-local LrDialogs = import 'LrDialogs'
 local LrBinding = import 'LrBinding'
+local LrDialogs = import 'LrDialogs'
 
 require 'DrpAPI'
 
@@ -51,11 +51,9 @@ function DrpExportDialogSections.sectionsForTopOfDialog(viewFactory, propertyTab
                     import"LrTasks".startAsyncTask(function()
                         local verifyUpload = DrpAPI.isUploadImageConnectionValid(propertyTable)
                         if verifyUpload then
-                            LrDialogs.message(
-                                LOC '$$$/DarkRushPhotography/ExportDialog/ApiSettingsValid=API Settings Valid')
+                            LrDialogs.message(LOC '$$$/DarkRushPhotography/ExportDialog/ApiSettingsValid=Valid')
                         else
-                            LrDialogs.message(
-                                LOC '$$$/DarkRushPhotography/ExportDialog/ApiSettingsNotValid=API Settings Not Valid')
+                            LrDialogs.message(LOC '$$$/DarkRushPhotography/ExportDialog/ApiSettingsNotValid=Not Valid')
                         end
                     end)
                 end

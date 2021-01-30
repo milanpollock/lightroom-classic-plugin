@@ -1,7 +1,7 @@
 --[[----------------------------------------------------------------------------
 
 DrpExportServiceProvider.lua
-Export service provider description for Dark Rush Photography Upload
+Export service provider description for Dark Rush Photography's plugin
 
 ------------------------------------------------------------------------------]]
 require 'DrpExportDialogSections'

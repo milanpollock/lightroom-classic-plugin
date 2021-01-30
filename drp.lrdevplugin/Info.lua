@@ -1,7 +1,7 @@
 --[[----------------------------------------------------------------------------
 
 Info.lua
-Summary information for Dark Rush Photography plugin
+Summary information for Dark Rush Photography's plugin
 
 ------------------------------------------------------------------------------]]
 return {
@@ -10,7 +10,7 @@ return {
     LrSdkMinimumVersion = 3.0, -- minimum SDK version required by this plug-in
 
     LrToolkitIdentifier = 'com.darkrushphotography.plugin',
-    LrPluginName = LOC '$$$/DarkRushPhotography/PluginName=Dark Rush Photography',
+    LrPluginName = LOC '$$$/DarkRushPhotography/PluginName=Dark Rush^R Photography',
 
     LrExportServiceProvider = {
         title = 'DRP',
@@ -19,7 +19,7 @@ return {
 
     VERSION = {
         major = 1,
-        minor = 37,
+        minor = 38,
         revision = 0
     }
 

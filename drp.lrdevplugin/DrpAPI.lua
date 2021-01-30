@@ -1,14 +1,12 @@
 --[[----------------------------------------------------------------------------
 
 DrpAPI.lua
-Common code to initiate Dark Rush Photography Upload API requests
+Dark Rush Photography's API
 
 ------------------------------------------------------------------------------]]
 local LrErrors = import 'LrErrors'
 local LrHttp = import 'LrHttp'
 local LrPathUtils = import 'LrPathUtils'
-
-local logger = import 'LrLogger'('DrpAPI')
 
 DrpAPI = {}
 
@@ -42,16 +40,15 @@ function DrpAPI.uploadImage(propertyTable, params)
     local publishedCollectionSetName = params.publishedCollectionSetName
     local publishedCollectionName = params.publishedCollectionName
 
-    local leafName = LrPathUtils.leafName(filePath)
+    local publishedCollectionWithLeafName = publishedCollectionName .. "|&|" .. LrPathUtils.leafName(filePath)
     local fileName = nil
     if publishedCollectionSetParentName ~= nil then
         fileName = publishServiceName .. "|&|" .. publishedCollectionSetParentName .. "|&|" ..
-                       publishedCollectionSetName .. "|&|" .. publishedCollectionName .. "|&|" .. leafName
+                       publishedCollectionSetName .. "|&|" .. publishedCollectionWithLeafName
     elseif publishedCollectionSetName ~= nil then
-        fileName = publishServiceName .. "|&|" .. publishedCollectionSetName .. "|&|" .. publishedCollectionName ..
-                       "|&|" .. leafName
+        fileName = publishServiceName .. "|&|" .. publishedCollectionSetName .. "|&|" .. publishedCollectionWithLeafName
     else
-        fileName = publishServiceName .. "|&|" .. publishedCollectionName .. "|&|" .. leafName
+        fileName = publishServiceName .. "|&|" ..  publishedCollectionWithLeafName
     end
 
     local uploadImageUrl = propertyTable.drpApiBaseUrl .. 'UploadImageFunction'
