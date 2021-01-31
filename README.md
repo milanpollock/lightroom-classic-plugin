@@ -6,7 +6,7 @@ In order to simplify the process of publishing images, we've written this Adobe 
 
 ### Publisher Manager Settings
 
-We've found the following settings to work best in the Publisher Manager
+We've found the following settings to work best for Publisher Manager
 
 | Property          | Value                           |
 | ----------------- | ------------------------------- |
@@ -24,7 +24,7 @@ The following values are used as metadata values for images
 | JPEG Quality      | 100%        |
 | ...               | ...         |
 
-We also process all of our images using [JPEG mini](https://www.jpegmini.com/)
+We also use a Post-Process [JPEG mini](https://www.jpegmini.com/) action on all of our images
 
 ----
 
