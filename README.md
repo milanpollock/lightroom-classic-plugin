@@ -8,11 +8,15 @@ In order to simplify the process of publishing images, we've written this Adobe 
 
 We've found the following settings to work best in the Publisher Manager
 
-| Property          | Value       |
-| ----------------- | ----------- |
-| JPEG Quality      | 100%        |
-| ...               | ...         |
-
+| Property          | Value                           |
+| ----------------- | ------------------------------- |
+| Image Format      | JPEG                            |
+| Color Space       | sRGB                            |
+| Quality           | 100%                            |
+| ResizeToFit       | LongEdge 2048 pixels            |
+| Resolution        | 300 pixels per inch             |  
+| No Sharpening     |                                 |
+| All Metadata      | remove person and location info |
 The following values are used as metadata values for images
 
 | Property          | Value       |
@@ -20,7 +24,7 @@ The following values are used as metadata values for images
 | JPEG Quality      | 100%        |
 | ...               | ...         |
 
-We also process all of our images using [JPEG SomeName]()
+We also process all of our images using [JPEG mini](https://www.jpegmini.com/)
 
 ----
 
