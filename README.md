@@ -17,14 +17,18 @@ We've found the following settings to work best for Publisher Manager
 | Resolution        | 300 pixels per inch             |  
 | No Sharpening     |                                 |
 | All Metadata      | remove person and location info |
+
+We also use a Post-Process [JPEG mini](https://www.jpegmini.com/) action on all of our images
+
+----
+
+### Metadata Settings
+
 The following values are used as metadata values for images
 
 | Property          | Value       |
 | ----------------- | ----------- |
-| JPEG Quality      | 100%        |
-| ...               | ...         |
-
-We also use a Post-Process [JPEG mini](https://www.jpegmini.com/) action on all of our images
+|                   |             |
 
 ----
 
